@@ -26,7 +26,7 @@ For building and running the application you need:
 Steps to setup the application in your local:
 
 1) Clone the repository or download it.
-2) Import it using maven project.
+2) Import it using maven project in any editor(Eclipse, Intellij etc.).
 3) Run the application using Run command.
 4) The swagger Api url can be accessed at http://localhost:8080/document-service/swagger-ui/index.html
 
