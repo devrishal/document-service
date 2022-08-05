@@ -15,8 +15,6 @@ For building and running the application you need:
    </a> 
     <a href="http://barcode4j.sourceforge.net/" target="_blank" rel="noreferrer" ><img src="http://barcode4j.sourceforge.net/resources/images/barcode4j-logo.gif" width="80" height="40"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="https://xmlgraphics.apache.org/fop/1.1/graphics.html" target="_blank" rel="noreferrer" ><img src="https://xmlgraphics.apache.org/images/apache-fop-logo.jpg" width="80" height="40"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://pdfbox.apache.org/" target="_blank" rel="noreferrer">
-
 <svg focusable="false" class="pdfbox-brand-text" xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" viewBox="0 0 109.81066666651577 30.943999999957384" aria-labelledby="brandTextTitle brandTextDesc" role="img">
   <title id="brandTextTitle">PDFBox brand text</title>
   <desc id="brandTextDesc">PDFBox, the brand text.</desc>
@@ -28,7 +26,6 @@ For building and running the application you need:
   <path d="M88.316 19.637L83.24 9.057h4.607l2.688 6.143 2.688-6.144h4.608l-5.16 10.58 5.42 11.052h-4.61l-2.94-6.613-2.94 6.613h-4.61l5.34-11.05z"></path>
   <path d="M102.883 5.28h1.2q.784 0 1.168-.224.4-.24.4-.784 0-.464-.35-.672-.33-.224-.88-.224h-1.53V5.28zm-1.056-2.864h2.56q2.32 0 2.32 1.904 0 .48-.144.816-.128.336-.368.56-.24.224-.56.352-.304.112-.656.16l1.93 2.96h-1.28L103.7 6.24h-.817v2.928h-1.056V2.416zm6.832 3.376q0-.976-.37-1.84-.37-.864-.99-1.504-.63-.64-1.48-1.008-.85-.384-1.81-.384t-1.81.384q-.85.368-1.47 1.008t-1 1.504-.37 1.84q0 .976.364 1.84.37.864.992 1.504t1.47 1.024q.85.368 1.81.368.96 0 1.805-.368.85-.384 1.47-1.024.625-.64.99-1.504.37-.864.37-1.84zm-10.44 0q0-1.2.45-2.256.46-1.056 1.25-1.84t1.84-1.232Q102.82 0 104.02 0t2.255.464q1.056.448 1.84 1.232t1.232 1.84q.464 1.056.464 2.256 0 1.2-.46 2.256-.45 1.056-1.23 1.84t-1.84 1.248q-1.05.448-2.25.448t-2.25-.448q-1.053-.464-1.84-1.248t-1.25-1.84q-.45-1.056-.45-2.256z" fill-rule="evenodd"></path>
 </svg>
-</a>
 </p>
 
 ##### Current Version- 1.0.0
