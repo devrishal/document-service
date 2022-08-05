@@ -31,3 +31,9 @@ Steps to setup the application in your local:
 4) Run the application using Run command or using editor feature.
 5) The swagger Api url can be accessed at http://localhost:8080/document-service/swagger-ui/index.html
 
+
+## Sample Pdf Screenshot
+|Sample PDF|
+:----------:|
+|![Sample PDF](/Code39_Barcode_Example_Image.png)|
+
