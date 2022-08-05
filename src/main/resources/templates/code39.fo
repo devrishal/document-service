@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+    <fo:layout-master-set>
+        <fo:simple-page-master master-name="A4"
+                               page-width="297mm" page-height="210mm"
+                               margin-top="1cm" margin-bottom="1cm"
+                               margin-left="1cm" margin-right="1cm">
+            <fo:region-body margin="3cm"/>
+            <fo:region-before extent="2cm"/>
+            <fo:region-after extent="2cm"/>
+            <fo:region-start extent="2cm"/>
+            <fo:region-end extent="2cm"/>
+        </fo:simple-page-master>
+    </fo:layout-master-set>
+
+    <fo:page-sequence master-reference="A4">
+        <fo:flow flow-name="xsl-region-body">
+            <fo:block text-align="center" th:text="${model.title}"/>
+            <fo:block text-align="center" th:text="${model.titleLine1}"/>
+            <fo:block>
+                <fo:instream-foreign-object>
+                    <barcode:barcode
+                            xmlns:barcode="http://barcode4j.krysalis.org/ns"
+                            message="BarcodeMessage" th:attr="message=${model.code39Message}" orientation="0">
+                        <barcode:code39>
+                            <barcode:height>8mm</barcode:height>
+                        </barcode:code39>
+                    </barcode:barcode>
+                </fo:instream-foreign-object>
+            </fo:block>
+        </fo:flow>
+    </fo:page-sequence>
+</fo:root>

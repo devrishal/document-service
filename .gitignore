@@ -1,5 +1,9 @@
 # Compiled class file
 *.class
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
 
 # Log file
 *.log
@@ -21,3 +25,8 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+# file: ~/.gitignore_global
+.idea/
+*.iws
+*.iml
+*.ipr

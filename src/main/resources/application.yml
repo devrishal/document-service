@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:authdb
+    driverClassName: org.h2.Driver
+    username: test
+    password: test
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    root: TRACE
+    org:
+      hibernate:
+        SQL: TRACE
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
