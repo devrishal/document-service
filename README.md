@@ -33,7 +33,7 @@ Steps to setup the application in your local:
 
 
 ## Sample Pdf Screenshot
-|Sample PDF|
+|Code39 sample PDF|
 :----------:|
 |![Sample PDF](/Code39_Barcode_Example_Image.png)|
 
