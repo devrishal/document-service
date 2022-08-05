@@ -1,12 +1,12 @@
 package com.rds.barcodegen.service;
 
-import com.rds.barcodegen.config.ApplicationConfig;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
+import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -28,7 +28,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class DocumentServiceApacheFOP {
-    private final ApplicationConfig applicationConfig;
+    private final TemplateEngine templateEngine;
 
     public void generatePDF(HttpServletRequest request, HttpServletResponse response) {
         String data = RandomStringUtils.random(20, 0, 0, true, true, null).toUpperCase();
@@ -36,7 +36,7 @@ public class DocumentServiceApacheFOP {
                 "title", "BarCode Generation Using Apache FOP",
                 "titleLine1", "and Barcode4J",
                 "code39Message", data)));
-        String xmlTemplate = applicationConfig.templateProcessorEngine().process("code39", context);
+        String xmlTemplate = templateEngine.process("code39", context);
 
         try {
             File confFile = ResourceUtils.getFile("classpath:configuration.xconf");

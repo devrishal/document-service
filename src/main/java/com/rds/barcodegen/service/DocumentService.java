@@ -1,6 +1,6 @@
 package com.rds.barcodegen.service;
 
-import com.rds.barcodegen.repository.CarSpecification;
+
 import lombok.RequiredArgsConstructor;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -26,10 +26,7 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class DocumentService {
-    private final CarSpecification carSpecification;
-
     public void downloadDocument(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
         document.addPage(page);
@@ -61,9 +58,5 @@ public class DocumentService {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(barcodeImage, "bmp", baos);
         return baos.toByteArray();
-    }
-
-    public void callDB() {
-        carSpecification.getQuery();
     }
 }
