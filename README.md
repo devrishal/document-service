@@ -1,6 +1,6 @@
 # barcode-generator
 
-Project to generate Barcode
+Project to generate Barcode using Thymeleaf template in springboot project.
 
 For building and running the application you need:
 
