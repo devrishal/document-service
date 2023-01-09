@@ -1,15 +1,12 @@
 package com.rds.barcodegen.service;
 
-import lombok.RequiredArgsConstructor;
-import org.apache.commons.lang.RandomStringUtils;
-import org.apache.fop.apps.FopFactory;
-import org.apache.fop.apps.MimeConstants;
-import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,12 +16,27 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamSource;
-import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.Locale;
-import java.util.Map;
 
+import com.rds.barcodegen.exception.DocumentServiceException;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.fop.apps.FopFactory;
+import org.apache.fop.apps.MimeConstants;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Service;
+
+import static java.lang.Boolean.FALSE;
+import static net.sf.saxon.lib.FeatureKeys.ALLOWED_PROTOCOLS;
+import static net.sf.saxon.lib.FeatureKeys.ALLOW_EXTERNAL_FUNCTIONS;
+import static net.sf.saxon.lib.FeatureKeys.DTD_VALIDATION;
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class DocumentServiceApacheFOP {
@@ -39,15 +51,19 @@ public class DocumentServiceApacheFOP {
         String xmlTemplate = templateEngine.process("code39", context);
 
         try {
-            File confFile = ResourceUtils.getFile("classpath:configuration.xconf");
-            FopFactory fopFactory = FopFactory.newInstance();
-            fopFactory.setUserConfig(confFile);
+            InputStream inputStream = new ClassPathResource("configuration.xconf").getInputStream();
+            FopFactory fopFactory = FopFactory.newInstance(new URI("./"), inputStream);
             DefaultHandler defaultHandler = fopFactory.newFop(MimeConstants.MIME_PDF, response.getOutputStream()).getDefaultHandler();
             Source src = new StreamSource(new StringReader(xmlTemplate));
-            Result res = new SAXResult(defaultHandler);
-            TransformerFactory.newInstance().newTransformer().transform(src, res);
-        } catch (IOException | TransformerException | SAXException e) {
-            e.printStackTrace();
+            Result result = new SAXResult(defaultHandler);
+            TransformerFactory transformerFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
+            transformerFactory.setFeature(DTD_VALIDATION, FALSE);
+            transformerFactory.setFeature(ALLOW_EXTERNAL_FUNCTIONS, FALSE);
+            transformerFactory.setAttribute(ALLOWED_PROTOCOLS, "");
+            transformerFactory.newTransformer().transform(src, result);
+        }
+        catch (IOException | TransformerException | SAXException | URISyntaxException e) {
+            throw new DocumentServiceException("Exception occured:", e);
         }
     }
 }
