@@ -2,12 +2,11 @@ package com.rds.barcodegen.api.rest.impl;
 
 import java.io.IOException;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.rds.barcodegen.api.rest.DocumentResource;
 import com.rds.barcodegen.service.DocumentServiceApacheFOP;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpHeaders;
