@@ -1,4 +1,4 @@
-# barcode-generator
+# document-service
 
 Project to generate Barcode using Thymeleaf template in springboot project.
 
