@@ -10,7 +10,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.rds.barcodegen</groupId>
-	<artifactId>barcode-generator</artifactId>
+	<artifactId>document-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>barcode-generator</name>
 	<description>Code39 Barcode generator</description>

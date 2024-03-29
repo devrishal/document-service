@@ -1,28 +1,31 @@
 package com.rds.barcodegen.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.spring6.SpringTemplateEngine;
-import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ApplicationConfig {
     @Bean
-    public SpringResourceTemplateResolver templateResolver() {
-        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+    public ITemplateResolver foTemplateResolver() {
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setTemplateMode(TemplateMode.XML);
-        templateResolver.setPrefix("classpath:/templates/");
+        templateResolver.setOrder(1);
+        templateResolver.setPrefix("/templates/");
         templateResolver.setSuffix(".fo");
         return templateResolver;
     }
 
     @Bean
     public TemplateEngine templateProcessorEngine() {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setEnableSpringELCompiler(true);
-        templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.setTemplateResolver(foTemplateResolver());
         return templateEngine;
     }
 }
