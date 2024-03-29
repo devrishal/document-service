@@ -1,0 +1,40 @@
+{
+  "customerInfo": {
+    "name": "Test Consumer",
+    "id": "testingid1234",
+    "address": "Indirapuram, Delhi"
+  },
+  "items": [
+    {
+      "itemId": "01HT58G04GD22BYE7WYXY49WF8",
+      "quantity": 91,
+      "itemName": "Myriotrema Lichen",
+      "perUnitPrice": 50
+    },
+    {
+      "itemId": "01HT58G04GF8D3Q6Q67MAAH1KR",
+      "quantity": 25,
+      "itemName": "Semaphore Pricklypear",
+      "perUnitPrice": 97
+    },
+    {
+      "itemId": "01HT58G04H283NPC3Q0HBTYK14",
+      "quantity": 87,
+      "itemName": "Kincaid's Lupine",
+      "perUnitPrice": 72
+    },
+    {
+      "itemId": "01HT58G04HVS4FXZPNKC0VY8X5",
+      "quantity": 87,
+      "itemName": "Carolina Anemone",
+      "perUnitPrice": 81
+    },
+    {
+      "itemId": "01HT58G04K77QDRTP0BS541N1N",
+      "quantity": 51,
+      "itemName": "Grassland Croton",
+      "perUnitPrice": 65
+    }
+  ],
+  "reductionPercentage": 19
+}

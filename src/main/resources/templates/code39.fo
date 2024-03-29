@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:barcode="http://barcode4j.krysalis.org/ns">
+	<fo:layout-master-set>
+		<fo:simple-page-master master-name="A4"
+							   page-width="297mm" page-height="210mm"
+							   margin-top="1cm" margin-bottom="1cm"
+							   margin-left="1cm" margin-right="1cm">
+			<fo:region-body margin="3cm"/>
+			<fo:region-before extent="2cm"/>
+			<fo:region-after extent="2cm"/>
+			<fo:region-start extent="2cm"/>
+			<fo:region-end extent="2cm"/>
+		</fo:simple-page-master>
+	</fo:layout-master-set>
+
+	<fo:page-sequence master-reference="A4">
+		<fo:flow flow-name="xsl-region-body">
+			<fo:block space-after="4mm" text-align="center" th:text="${model.title}"/>
+			<fo:block space-after="2in" text-align="center"
+					  th:text="${model.titleLine1}"/>
+			<fo:block text-align="center">
+				<fo:instream-foreign-object>
+					<barcode:barcode
+							xmlns:barcode="http://barcode4j.krysalis.org/ns"
+							message="BarcodeMessage"
+							th:attr="message=${model.code39Message}" orientation="0">-->
+						<barcode:code39>
+							<barcode:module-width>0.32mm</barcode:module-width>
+							<barcode:height>30mm</barcode:height>
+							<barcode:width>120mm</barcode:width>
+						</barcode:code39>
+					</barcode:barcode>
+						<!--<barcode:intl2of5>
+							<barcode:height>15mm</barcode:height>
+							<barcode:module-width>0.21mm</barcode:module-width>
+							<barcode:wide-factor>3.0</barcode:wide-factor>
+							<barcode:quiet-zone enabled="true">10mw</barcode:quiet-zone>
+							<checksum>auto</checksum>
+							<barcode:human-readable>
+								<barcode:placement>bottom</barcode:placement>
+								<barcode:font-name>Helvetica</barcode:font-name>
+								<barcode:font-size>8pt</barcode:font-size>
+								<barcode:display-checksum>false</barcode:display-checksum>
+							</barcode:human-readable>
+						</barcode:intl2of5>-->
+
+				</fo:instream-foreign-object>
+			</fo:block>
+		</fo:flow>
+
+	</fo:page-sequence>
+</fo:root>
