@@ -22,10 +22,22 @@ public class ApplicationConfig {
     }
 
     @Bean
+    public ITemplateResolver xmlTemplateResolver() {
+        final ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setOrder(2);
+        templateResolver.setPrefix("/templates/");
+        templateResolver.setSuffix(".xml");
+        templateResolver.setCacheable(false);
+        templateResolver.setTemplateMode(TemplateMode.XML);
+        return templateResolver;
+    }
+
+    @Bean
     public TemplateEngine templateProcessorEngine() {
         final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setEnableSpringELCompiler(true);
-        templateEngine.setTemplateResolver(foTemplateResolver());
+        templateEngine.addTemplateResolver(foTemplateResolver());
+        templateEngine.addTemplateResolver(xmlTemplateResolver());
         return templateEngine;
     }
 }

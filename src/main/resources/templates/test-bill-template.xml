@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format"
+		 xmlns:th="http://www.w3.org/1999/XSL/Format">
+	<fo:layout-master-set>
+		<fo:simple-page-master master-name="A4"
+							   page-width="210mm" page-height="297mm"
+							   margin-top="1cm" margin-bottom="1cm"
+							   margin-left="1cm" margin-right="1cm">
+			<fo:region-body margin-top="5cm"  margin="1cm" region-name="region-body"/>
+			<fo:region-before margin="1cm" extent="1cm" region-name="region-header"/>
+			<fo:region-after margin="1cm" extent="1cm" region-name="region-footer"/>
+			<fo:region-start margin="1cm" extent="1cm" region-name="region-left"/>
+			<fo:region-end margin="1cm" extent="1cm" region-name="region-right"/>
+		</fo:simple-page-master>
+	</fo:layout-master-set>
+
+	<fo:page-sequence master-reference="A4">
+		<fo:static-content flow-name="region-header">
+			<fo:block text-align="end">
+				<fo:page-number/>
+			</fo:block>
+			<fo:block-container margin-bottom="3mm">
+				<fo:table width="100%">
+					<fo:table-column column-width="15%"/>
+					<fo:table-column column-width="30%"/>
+					<fo:table-column column-width="15%"/>
+					<fo:table-column column-width="40%"/>
+					<fo:table-body>
+						<fo:table-row>
+							<fo:table-cell number-columns-spanned="4" text-align="center">
+								<fo:block>
+									<fo:external-graphic content-height="10%"
+														 src="classpath:/images/862893.png"/>
+								</fo:block>
+							</fo:table-cell>
+						</fo:table-row>
+						<fo:table-row>
+							<fo:table-cell number-columns-spanned="4" text-align="center">
+								<fo:block font-size="15pt">
+									Test-Mart pvt. ltd.
+								</fo:block>
+							</fo:table-cell>
+						</fo:table-row>
+						<fo:table-row>
+							<fo:table-cell text-align="left">
+								<fo:block>Customer name:</fo:block>
+							</fo:table-cell>
+							<fo:table-cell number-columns-spanned="3" text-align="left">
+								<fo:block th:text="${billData.customerInfo.name}"/>
+							</fo:table-cell>
+						</fo:table-row>
+						<fo:table-row>
+							<fo:table-cell text-align="left">
+								<fo:block th:text="'Customer Id: '"/>
+							</fo:table-cell>
+							<fo:table-cell number-columns-spanned="3" text-align="left">
+								<fo:block th:text="${billData.customerInfo.id}"/>
+							</fo:table-cell>
+						</fo:table-row>
+						<fo:table-row>
+							<fo:table-cell number-columns-spanned="1" text-align="left">
+								<fo:block>Address: </fo:block>
+							</fo:table-cell>
+							<fo:table-cell number-columns-spanned="2">
+								<fo:block
+										th:text="${billData.customerInfo.address}"/>
+							</fo:table-cell>
+						</fo:table-row>
+					</fo:table-body>
+				</fo:table>
+			</fo:block-container>
+		</fo:static-content>
+		<fo:flow flow-name="region-body" font-size="10pt">
+			<fo:block-container margin-bottom="2mm">
+				<fo:table width="100%">
+					<fo:table-column column-width="40%"/>
+					<fo:table-column column-width="30%"/>
+					<fo:table-column column-width="15%"/>
+					<fo:table-column column-width="10%"/>
+					<fo:table-column column-width="10%"/>
+					<fo:table-header border-style="solid" border-width="0.5mm">
+						<fo:table-cell border-style="solid" padding="2mm"
+									   border-width="0.5mm"
+									   font-size="12pt" text-align="center">
+							<fo:block>Item id</fo:block>
+						</fo:table-cell>
+						<fo:table-cell border-style="solid" padding="2mm"
+									   border-width="0.5mm"
+									   font-size="12pt" text-align="center">
+							<fo:block>Item name</fo:block>
+						</fo:table-cell>
+						<fo:table-cell border-style="solid" padding="2mm"
+									   border-width="0.5mm" font-size="12pt"
+									   text-align="center">
+							<fo:block>Quantity purchased</fo:block>
+						</fo:table-cell>
+						<fo:table-cell border-style="solid" padding="2mm"
+									   border-width="0.5mm" font-size="12pt"
+									   text-align="center">
+							<fo:block>Per unit price</fo:block>
+						</fo:table-cell>
+						<fo:table-cell border-style="solid" padding="2mm"
+									   border-width="0.5mm" font-size="12pt"
+									   text-align="center">
+							<fo:block>Item price</fo:block>
+						</fo:table-cell>
+					</fo:table-header>
+					<fo:table-body>
+						<th:block th:each="item : ${billData.items}">
+							<fo:table-row border-style="solid">
+								<fo:table-cell padding="2mm" border-width="0.5mm"
+											   border-left-style="solid">
+									<fo:block th:text="${item.itemId}"/>
+								</fo:table-cell>
+								<fo:table-cell padding="2mm" border-width="0.5mm"
+											   border-left-style="solid">
+									<fo:block th:text="${item.itemName}"/>
+								</fo:table-cell>
+								<fo:table-cell padding="2mm" border-width="0.5mm"
+											   border-left-style="solid">
+									<fo:block th:text="${item.quantity}"/>
+								</fo:table-cell>
+								<fo:table-cell padding="2mm" border-width="0.5mm"
+											   border-left-style="solid">
+									<fo:block th:text="${item.perUnitPrice}"/>
+								</fo:table-cell>
+								<fo:table-cell padding="2mm" border-width="0.5mm"
+											   border-left-style="solid"
+											   border-right-style="solid">
+									<fo:block th:text="${item.itemPrice}"/>
+								</fo:table-cell>
+							</fo:table-row>
+						</th:block>
+					</fo:table-body>
+				</fo:table>
+				<fo:table width="100%" margin-top="2cm">
+					<fo:table-column column-width="15%"/>
+					<fo:table-column column-width="30%"/>
+					<fo:table-column column-width="15%"/>
+					<fo:table-column column-width="40%"/>
+					<fo:table-body>
+						<fo:table-row border-bottom-style="dotted">
+							<fo:table-cell number-columns-spanned="3" text-align="center">
+								<fo:block>
+									<fo:block font-size="15pt">Total amount before discount:</fo:block>
+								</fo:block>
+							</fo:table-cell>
+							<fo:table-cell text-align="left">
+								<fo:block
+										th:with="totalAmountBeforeDiscount=${billData.totalDiscount+billData.totalAmount}">
+									<fo:inline font-size="15pt"
+											   th:text="${totalAmountBeforeDiscount}"/>
+								</fo:block>
+							</fo:table-cell>
+						</fo:table-row>
+						<fo:table-row border-bottom-style="dotted">
+							<fo:table-cell number-columns-spanned="3" text-align="center">
+								<fo:block>
+									<fo:block font-size="15pt">Discount Percentage:</fo:block>
+								</fo:block>
+							</fo:table-cell>
+							<fo:table-cell text-align="left">
+								<fo:block>
+									<fo:block font-size="15pt"
+											  th:text="${billData.reductionPercentage}+'%'"/>
+								</fo:block>
+							</fo:table-cell>
+						</fo:table-row>
+						<fo:table-row border-bottom-style="solid">
+							<fo:table-cell number-columns-spanned="3" text-align="center">
+								<fo:block>
+									<fo:block font-size="15pt">Discount Amount:</fo:block>
+								</fo:block>
+							</fo:table-cell>
+							<fo:table-cell text-align="left">
+								<fo:block>
+									<fo:block font-size="15pt"
+											  th:text="${billData.totalDiscount}"/>
+								</fo:block>
+							</fo:table-cell>
+						</fo:table-row>
+						<fo:table-row>
+							<fo:table-cell number-columns-spanned="3" text-align="center">
+								<fo:block>
+									<fo:block font-size="15pt">Total amount after discount:</fo:block>
+								</fo:block>
+							</fo:table-cell>
+							<fo:table-cell text-align="left">
+								<fo:block>
+									<fo:block font-size="15pt"
+											  th:text="${billData.totalAmount}"/>
+								</fo:block>
+							</fo:table-cell>
+						</fo:table-row>
+
+					</fo:table-body>
+				</fo:table>
+			</fo:block-container>
+		</fo:flow>
+	</fo:page-sequence>
+</fo:root>
